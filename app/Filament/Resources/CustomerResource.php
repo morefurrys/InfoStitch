@@ -21,14 +21,19 @@ class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                TextInput::make('phone')->label('Phone Number'),
+                TextInput::make('name')
+                ->required(),
+                TextInput::make('phone')
+                ->required()
+                ->tel()
+                ->numeric()
+                ->label('Phone Number'),
             ]);
     }
 
