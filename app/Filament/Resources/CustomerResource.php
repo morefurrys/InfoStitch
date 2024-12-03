@@ -31,7 +31,7 @@ class CustomerResource extends Resource
                 ->required(),
                 TextInput::make('phone')
                 ->required()
-                ->tel()
+                //->tel()
                 ->numeric()
                 ->label('Phone Number'),
             ]);

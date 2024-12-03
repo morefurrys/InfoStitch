@@ -28,8 +28,8 @@ class BodyMetricResource extends Resource
             ->schema([
                 Select::make('customer_id')
                 ->relationship(
-                    name: 'customer',
-                    titleAttribute: 'name'
+                    'customer',
+                    'name'
                 )
                 ->searchable()
                 ->preload(),
@@ -73,6 +73,7 @@ class BodyMetricResource extends Resource
                 TextColumn::make('dart_cir')->label('Dart Cir'),
                 TextColumn::make('neck')->label('Neck'),
                 TextColumn::make('mini_dress')->label('Mini Dress'),
+                TextColumn::make('created_at')->label('Created At'),
             ])
             ->filters([
                 //
