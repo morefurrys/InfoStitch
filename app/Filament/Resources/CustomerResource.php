@@ -22,18 +22,21 @@ class CustomerResource extends Resource
     protected static ?string $model = Customer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
+                ->label('Customer Name')
                 ->required(),
                 TextInput::make('phone')
+                ->label('Phone Number')
                 ->required()
                 //->tel()
-                ->numeric()
-                ->label('Phone Number'),
+                ->numeric(),
+                
             ]);
     }
 
@@ -42,7 +45,7 @@ class CustomerResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                ->label('Name')
+                ->label('Customer Name')
                 ->sortable()
                 ->searchable(),
                 TextColumn::make('phone')

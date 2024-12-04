@@ -18,8 +18,8 @@ class Customer extends Model
         'phone'
     ];
 
-//     public function bodyMetrics()
-// {
-//     return $this->hasMany(BodyMetric::class, 'customer_id');
-// }
+    public function bodyMetrics()
+{
+    return $this->hasMany(BodyMetric::class, 'customer_id');
+}
 }

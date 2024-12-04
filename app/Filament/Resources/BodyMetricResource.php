@@ -21,6 +21,7 @@ class BodyMetricResource extends Resource
     protected static ?string $model = BodyMetric::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
@@ -56,7 +57,9 @@ class BodyMetricResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('customer_id')->label('Customer ID'),
+                TextColumn::make('customer.name')
+                ->label('Customer Name')
+                ->searchable(),
                 TextColumn::make('bust')->label('Chest'),
                 TextColumn::make('bust_cir')->label('Chest Cir'),
                 TextColumn::make('waist')->label('Waist'),
@@ -73,13 +76,17 @@ class BodyMetricResource extends Resource
                 TextColumn::make('dart_cir')->label('Dart Cir'),
                 TextColumn::make('neck')->label('Neck'),
                 TextColumn::make('mini_dress')->label('Mini Dress'),
-                TextColumn::make('created_at')->label('Created At'),
+                TextColumn::make('created_at')
+                ->label('Created At')
+                ->toggleable(true),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
