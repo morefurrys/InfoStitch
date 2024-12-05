@@ -33,9 +33,10 @@ class CustomerResource extends Resource
                 ->required(),
                 TextInput::make('phone')
                 ->label('Phone Number')
-                ->required()
-                //->tel()
-                ->numeric(),
+                ->tel()
+                ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
+                ->required(),
+                
                 
             ]);
     }

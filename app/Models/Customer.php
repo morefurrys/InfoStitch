@@ -22,4 +22,9 @@ class Customer extends Model
 {
     return $this->hasMany(BodyMetric::class, 'customer_id');
 }
+    public function statuses()
+{
+    return $this->hasMany(Status::class, 'customer_id');
+}
+
 }

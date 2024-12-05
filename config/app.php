@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'InfoStitch'),
+    'name' => env('InfoStitch', 'InfoStitch'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'Africa/Nairobi'),
+    'timezone' => env('Africa/Nairobi', 'Africa/Nairobi'),
 
     /*
     |--------------------------------------------------------------------------
