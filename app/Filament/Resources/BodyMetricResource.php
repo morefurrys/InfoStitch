@@ -78,9 +78,7 @@ class BodyMetricResource extends Resource
                 TextColumn::make('dart_cir')->label('Dart Cir')->toggleable(true),
                 TextColumn::make('neck')->label('Neck')->toggleable(true),
                 TextColumn::make('mini_dress')->label('Mini Dress')->toggleable(true),
-                TextColumn::make('created_at')
-                ->label('Created At')
-                ->toggleable(true),
+                TextColumn::make('created_at')->label('Created At')->toggleable(true),
             ])
             ->filters([
                 //

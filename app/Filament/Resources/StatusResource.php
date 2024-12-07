@@ -91,7 +91,7 @@ class StatusResource extends Resource
                 ->badge()
                 ->sortable()
                 ->color(fn (string $state): string => [
-                    'pending' => 'warning',
+                    'pending' => 'danger',
                     'paid' => 'success',
                 ][$state] ?? 'secondary'),
 
