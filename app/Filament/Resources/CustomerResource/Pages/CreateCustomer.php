@@ -9,4 +9,12 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateCustomer extends CreateRecord
 {
     protected static string $resource = CustomerResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        // Redirect to the list page after creating
+        return CustomerResource::getUrl('index');
+    }
 }
+
+

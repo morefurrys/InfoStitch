@@ -8,7 +8,9 @@ use App\Models\Customer;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\ActionSize;
 use Filament\Tables;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -31,10 +33,13 @@ class CustomerResource extends Resource
                 TextInput::make('name')
                 ->label('Customer Name')
                 ->required(),
+                
                 TextInput::make('phone')
                 ->label('Phone Number')
-                ->tel()
-                ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
+                ->numeric()
+                ->minLength(10)
+                ->maxLength(10)
+                //->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
                 ->required(),
                 
                 
@@ -57,7 +62,16 @@ class CustomerResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->button()
+                ->outlined()
+                ->size(ActionSize::ExtraSmall),
+
+                DeleteAction::make()
+                ->button()
+                ->outlined()
+                ->size(ActionSize::ExtraSmall),
+                              
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -79,6 +93,7 @@ class CustomerResource extends Resource
             'index' => Pages\ListCustomers::route('/'),
             'create' => Pages\CreateCustomer::route('/create'),
             'edit' => Pages\EditCustomer::route('/{record}/edit'),
+            
         ];
     }
 }

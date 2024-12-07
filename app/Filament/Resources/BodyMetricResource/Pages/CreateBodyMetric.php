@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateBodyMetric extends CreateRecord
 {
     protected static string $resource = BodyMetricResource::class;
+    protected function getRedirectUrl(): string
+    {
+        // Redirect to the list page after creating
+        return BodyMetricResource::getUrl('index');
+    }
 }

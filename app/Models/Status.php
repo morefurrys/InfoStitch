@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Status extends Model
 {
     protected $primaryKey = 'status_id'; // Set the primary key
-    public $incrementing = false; // If the key is non-incrementing
-    protected $keyType = 'string'; // Use 'string' if status_id is not an integer
+    //public $incrementing = false; // If the key is non-incrementing
+    //protected $keyType = 'string'; // Use 'string' if status_id is not an integer
 
     protected $fillable = [
         'customer_id',
@@ -22,7 +22,14 @@ class Status extends Model
     public function customer():BelongsTo{
         return $this->belongsTo(Customer::class, 'customer_id');
 
-
     }
+    protected static function boot()
+{
+    parent::boot();
+
+    static::saving(function ($model) {
+        $model->status_name = $model->balance == 0 ? 'paid' : 'pending';
+    });
+}
 
 }

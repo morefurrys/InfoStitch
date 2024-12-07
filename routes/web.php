@@ -1,11 +1,13 @@
 <?php
 
+use App\Filament\Resources\CustomerResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 // Route::get('/customers',[CustomerController::class,'index'])->name('customer.index');
 // Route::get('/customers/create',[CustomerController::class,'create'])->name('customer.create');

@@ -3,14 +3,16 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
+use Filament\Support\Enums\ActionSize;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\BodyMetric;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BodyMetricResource\Pages;
@@ -71,11 +73,11 @@ class BodyMetricResource extends Resource
                 TextColumn::make('forearm')->label('Forearm'),
                 TextColumn::make('forearm_cir')->label('Forearm Cir'),
                 TextColumn::make('shoulder')->label('Shoulder'),
-                TextColumn::make('off_shoulder')->label('Off Shoulder'),
-                TextColumn::make('dart')->label('Dart'),
-                TextColumn::make('dart_cir')->label('Dart Cir'),
-                TextColumn::make('neck')->label('Neck'),
-                TextColumn::make('mini_dress')->label('Mini Dress'),
+                TextColumn::make('off_shoulder')->label('Off Shoulder')->toggleable(true),
+                TextColumn::make('dart')->label('Dart')->toggleable(true),
+                TextColumn::make('dart_cir')->label('Dart Cir')->toggleable(true),
+                TextColumn::make('neck')->label('Neck')->toggleable(true),
+                TextColumn::make('mini_dress')->label('Mini Dress')->toggleable(true),
                 TextColumn::make('created_at')
                 ->label('Created At')
                 ->toggleable(true),
@@ -84,8 +86,21 @@ class BodyMetricResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make()
+                ->button()
+                ->outlined()
+                ->color('info')
+                ->size(ActionSize::ExtraSmall),
+
+                Tables\Actions\EditAction::make()
+                ->button()
+                ->outlined()
+                ->size(ActionSize::ExtraSmall),
+
+                DeleteAction::make()
+                ->button()
+                ->outlined()
+                ->size(ActionSize::ExtraSmall),
                 
             ])
             ->bulkActions([

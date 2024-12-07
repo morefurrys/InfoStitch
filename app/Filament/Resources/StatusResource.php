@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
+use Filament\Support\Enums\ActionSize;
 use Filament\Tables;
 use App\Models\Status;
 use Filament\Forms\Form;
@@ -44,21 +45,22 @@ class StatusResource extends Resource
                 //->seconds(false)
                 
                 TextInput::make('balance')
-                //->afterStateUpdated(fn ($state, callable $set) => $set('status', $state == 0 ? 'paid' : 'pending'))
+                //->afterStateUpdated(fn ($state, callable $set) => $set('status_name', $state == 0 ? 'paid' : 'pending'))
+                //->reactive()
                 ->numeric()
-                ->default(0)
+                //->default(0)
                 ->required(),
 
-                Select::make('status_name')
-                ->label('Status')
-                ->options([
-                    'pending' => 'Pending',
-                    'paid' => 'Paid'
-                    ])
-                ->native(false)
-                ->required(),
-                //->default('pending')
-                //->disabled(),
+                // Select::make('status_name')
+                // ->label('Status')
+                // ->options([
+                //     'pending' => 'Pending',
+                //     'paid' => 'Paid'
+                //     ])
+                // ->native(false)
+                // //->formatStateUsing(fn ($record) => $record->balance == 0 ? 'paid' : 'pending'),
+                // ->default('pending')
+                // ->disabled(),
                 
                 TextInput::make('description'),
             ]);
@@ -87,6 +89,7 @@ class StatusResource extends Resource
                 TextColumn::make('status_name')
                 ->label('Status')
                 ->badge()
+                ->sortable()
                 ->color(fn (string $state): string => [
                     'pending' => 'warning',
                     'paid' => 'success',
@@ -97,7 +100,10 @@ class StatusResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                ->button()
+                ->outlined()
+                ->size(ActionSize::ExtraSmall),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

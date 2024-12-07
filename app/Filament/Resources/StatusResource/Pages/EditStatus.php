@@ -10,10 +10,15 @@ class EditStatus extends EditRecord
 {
     protected static string $resource = StatusResource::class;
 
-    protected function getHeaderActions(): array
+    // protected function getHeaderActions(): array
+    // {
+    //     return [
+    //         Actions\DeleteAction::make(),
+    //     ];
+    // }
+    protected function getRedirectUrl(): string
     {
-        return [
-            Actions\DeleteAction::make(),
-        ];
+        // Redirect to the list page after editing
+        return StatusResource::getUrl('index');
     }
 }
