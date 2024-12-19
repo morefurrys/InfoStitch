@@ -73,24 +73,35 @@ class BodyMetricResource extends Resource
                 TextColumn::make('forearm')->label('Forearm'),
                 TextColumn::make('forearm_cir')->label('Forearm Cir'),
                 TextColumn::make('shoulder')->label('Shoulder'),
-                TextColumn::make('off_shoulder')->label('Off Shoulder')->toggleable(true),
-                TextColumn::make('dart')->label('Dart')->toggleable(true),
-                TextColumn::make('dart_cir')->label('Dart Cir')->toggleable(true),
-                TextColumn::make('neck')->label('Neck')->toggleable(true),
-                TextColumn::make('mini_dress')->label('Mini Dress')->toggleable(true),
-                TextColumn::make('created_at')->label('Created At')->toggleable(true),
+                TextColumn::make('off_shoulder')->label('Off Shoulder')
+                ->toggleable(true, true),
+                TextColumn::make('dart')->label('Dart')
+                ->toggleable(true, true),
+                TextColumn::make('dart_cir')->label('Dart Cir')
+                ->toggleable(true, true),
+                TextColumn::make('neck')->label('Neck')
+                ->toggleable(true, true),
+                TextColumn::make('mini_dress')->label('Mini Dress')
+                ->toggleable(true, true),
+                TextColumn::make('created_at')->label('Created At')
+                ->toggleable(true, true),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
+                // ->icon('heroicon-o-eye')
+                // ->color('info')
                 ->button()
                 ->outlined()
                 ->color('info')
                 ->size(ActionSize::ExtraSmall),
 
                 Tables\Actions\EditAction::make()
+                // ->icon('heroicon-o-pencil-square')
+                // ->color('primary')
+                // ->iconButton(),
                 ->button()
                 ->outlined()
                 ->size(ActionSize::ExtraSmall),

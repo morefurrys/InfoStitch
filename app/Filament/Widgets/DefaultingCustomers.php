@@ -21,7 +21,8 @@ class DefaultingCustomers extends BaseWidget
             ->defaultPaginationPageOption(5)
             ->columns([
                 TextColumn::make('Customer.name')
-                ->label('customer Name'),
+                ->label('customer Name')
+                ->searchable(),
                     
                 TextColumn::make('balance')
                 ->label('Balance')
